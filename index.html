@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/flatpickr@4/dist/flatpickr.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <form id="form"
+               @submit.prevent="validationForm"> 
+                <label class="label">
+                   <span class="label__text">
+                        Name
+                    </span>
+                    <input type="text" name="name"
+                    v-model="fields.name.value">
+                    <span class="error-message">
+                        {{fields.name.validationError}}
+                    </span>
+                </label>
+                <label class="label">
+                   <span class="label__text">
+                       Lastname
+                    </span>
+                    <input type="text" name="lastname"
+                    v-model="fields.lastname.value">
+                    <span class="error-message">
+                        {{fields.lastname.validationError}}
+                    </span>
+                </label>
+                <label class="label">
+                   <span class="label__text">
+                       Date
+                   </span>
+                    <flat-pickr v-model="fields.date.value" type="date" name="date" class="input" :config="config"></flat-pickr> 
+                    <span class="error-message">
+                        {{fields.date.validationError}}
+                    </span>
+                </label>
+                <div class="wrapper">
+                   <span class="title">
+                       Gender
+                   </span>
+                    <div class="wrapper--radio">
+                        <label class="label">
+                           <span class="label__text">
+                               Male
+                           </span>
+                            <input type="radio" name="gender" value="male"
+                            v-model="fields.sex.value">
+                        </label>
+                        <label class="label">
+                           <span class="label__text">
+                               Female
+                           </span>
+                            <input type="radio" name="gender" value="female"
+                            v-model="fields.sex.value">
+                        </label>
+                        <div class="error-message">
+                            {{fields.sex.validationError}}
+                        </div>
+                    </div>
+                </div>
+                <label class="label">
+                   <span class="label__text">
+                       Country
+                   </span>
+                    <select name="counry"
+                       v-model="fields.country.value">
+                        <option value="ukraine">Ukraine</option>
+                        <option value="poland">Poland</option>
+                        <option value="oae">OAE</option>
+                    </select>
+                    <span class="error-message">
+                        {{fields.country.validationError}}
+                    </span>
+                </label>
+                <label class="label">
+                   <span class="label__text">
+                       Email
+                   </span>
+                    <input type="text" name="email" id="email"
+                    v-model="fields.email.value">
+                    <span class="error-message">
+                        {{fields.email.validationError}}
+                    </span>
+                </label>
+                <label class="label">
+                   <span class="label__text">
+                       Password
+                   </span>
+                    <input type="password" name="password"
+                    v-model="fields.password.value">
+                    
+                    <span class="error-message">
+                        {{fields.password.validationError}}
+                    </span>
+                </label>
+                <label class="label">
+                   <span class="label__text">
+                       Address
+                   </span>
+                    <input type="text" name="address"
+                    v-model="fields.address.value">
+                    
+                    <span class="error-message">
+                        {{fields.address.validationError}}
+                    </span>
+                </label>
+                <label class="label">
+                   <span class="label__text">
+                       Message
+                   </span>
+                    <textarea cols="30" rows="10" name="message"
+                        v-model="fields.message.value"
+                    ></textarea>
+                    
+                    <span class="error-message">
+                        {{fields.message.validationError}}
+                    </span>
+                </label>
+                <button class="button">
+                    Submit
+                </button>
+            </form>
+            <div id="overlay"></div>
+            <div id="popUp">
+                <div class="text">
+                    Congrads <br>
+                    You success logging in
+                </div>
+            </div>
+        </div>
+        <template id="modal-window"
+        v-if="validationPass">
+        <div class="overlay"
+        @click="validationPass = false"
+        ></div>
+        <div class="modal">
+            <ul class="list">
+                <li class="list__item"
+                v-for="(field, key) in fields">
+                    <span class="name">{{key}}:</span> <span class="value">{{field.value}}</span>
+                </li>
+            </ul>
+        </div>
+        </template>
+    </div>
+    <script src="https://unpkg.com/flatpickr@4/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-flatpickr-component@7"></script>
+    <script src="script/script.js"></script>
+</body>
+</html>
