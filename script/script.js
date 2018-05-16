@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function(){
-    
+    const brusher = new Brusher({
+  image: 'https://images.pexels.com/photos/370799/pexels-photo-370799.jpeg', // Path of the image to be used as a brush
+  keepCleared: true,     // Put the blur back after user has cleared it
+  stroke: 80,            // Stroke size for the brush
+  lineStyle: 'round',    // Brush style (round, square, butt)
+  autoBlur: false,       // Brusher will use the provided image for the blurry background
+  autoBlurValue: 15,     // Blur strength in pixels
+});
+
+brusher.init();
     Vue.component('flat-pickr', VueFlatpickr);
 
     Vue.component('modal-window', {
